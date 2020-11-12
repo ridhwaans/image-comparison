@@ -1,4 +1,4 @@
-`https://github.com/ridhwaans/image_comparison`
+`https://github.com/ridhwaans/image-comparison`
 - [image comparison](#image-comparison)
   * [description](#description)
     + [example input CSV](#example-input-csv)
