@@ -36,7 +36,7 @@ Assumptions:
 ## questions and answers
 
 Q) How do you know if your code works?  
-A) I like to automate testing such as unit tests, integration and end-to-end tests if any that verify the functionality of the features & pieces of the code. I feel safe and confident as a developer with shipping working code backed up by a test suite. Furthermore, code reviews should be enforced which promotes code maintainability for all stakeholders 
+A) I like to automate testing such as unit tests, integration and end-to-end tests if any that verify the functionality of the features & pieces of the code. I feel safe and confident as a developer with shipping working code backed by a test suite. Also, code reviews should be enforced which promote code maintainability for all stakeholders 
 
 Q) How are you going to teach Bjorn how to use the program?  
 A) Writing good documentation for the program will explain its usage to Bjorn at a high level and low level. Making sure the test coverage runs also helps to see the flow. In addition, if there is any difficulty with absorbing and learning, I can schedule a over the shoulder meeting for guidance. 
@@ -123,13 +123,12 @@ d) Exit the program `ctrl-c or ^C`. Open the output csv which should be saved in
 Run `python -m pytest image_comparison.py` or see line `133` and the *testing section* for instructions
 
 ## notes on design and implementation  
-When desiging the solution, I enforced SOLID/DRY principles to keep my code clean and organized into single responsibility methods. 
-I wanted to keep requiring non-standard, third party libraries at a mininum so the solution is lightweights. There is some defensive programming for error checking input and making sure the program handles errors/exceptions gracefully.  
-In terms of implementing the image comparison algorithm, I researched top methods used by the python data community for image processing. I found approaches such as `pillow imagechops` difference, `mean squared error` in `numpy` to be useful. In the end, I utilized the `opencv2` & `skimage.measure` library to measure the structural similarity index and return the difference between a pair of images.
+I have kept the code clean and organized into single responsibility methods, guided by SOLID/DRY principles. 
+I wanted to keep requiring non-standard, third party libraries at a mininum to reduce bloat so the solution is lightweight. There is some defensive programming and error checking such that exceptions are handled gracefully & there are no silent failures.  
+I investigated different implementations for the image comparison, and I found approaches such as `pillow imagechops` difference, `mean squared error` in `numpy` to be useful. In the end, I utilized the `opencv2` & `skimage.measure` library to measure the structural similarity index and return the difference between a pair of images.
 
 ## testing  
-As noted before, automated test suite coverage builds confidence & quality before shipping. 
-Due to brevity of time, full coverage is due to be completed for demonstration purposes.   
+Due to brevity of time, full coverage is due to be completed. Unit tests are for demonstration purposes.   
 Lines `142` to `156` includes `pytest` python tests for testing the edge cases of `getCsv` of the `ImageComparison` class  
 Additional test cases to do include:   
 - unit tests for other components' functionality,  
