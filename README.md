@@ -36,21 +36,21 @@ Assumptions:
 ## questions and answers
 
 Q) How do you know if your code works?  
-A) I like to automate testing such as unit tests, integration and end-to-end tests if any that verify the functionality of the features & pieces of the code. I feel safe and confident as a developer with shipping working code backed by a test suite. Also, code reviews should be enforced which promote code maintainability for all stakeholders 
+A) I like to automate testing such as unit tests, integration and end-to-end tests if any that verify the functionality of the features & pieces of the code. I feel safe and confident as a developer to ship working working code that is backed by a test suite. Also, code reviews should be enforced which promotes code maintainability for all stakeholders. See [testing](#testing) for more information.  
 
 Q) How are you going to teach Bjorn how to use the program?  
-A) Writing good documentation for the program will explain its usage to Bjorn at a high level and low level. Making sure the test coverage runs also helps to see the flow. In addition, if there is any difficulty with absorbing and learning, I can schedule a over the shoulder meeting for guidance. 
+A) Writing good documentation and test coverage for the program will explain its usage to Bjorn at a high level and low level. Making sure the test cases run also helps to see the flow. Also, I can schedule a walkthrough or over the shoulder meeting if new users have difficulties.  
 
 Q) Your manager Jeanie is assigning you to a different task and is making Ferris the maintainer of your application. How do you make sure he succeeds?  
-A) It is a good practice to keep your code well-documented with inline comments and design docs before checking in, because it helps visibility and tracks edge cases or specific uses which may not be clearly apparent. Code reviews also serve to familiarize Bjorn and other developers with your work so that they are able to pick up from start. Code reviews help bounce ideas off one another, improve team cohesion and success.
+A) It is a good practice to keep your code well-documented with inline comments and design docs before checking in, because it brings visibility and tracks edge cases or specific uses which may not be clearly apparent. Code reviews also help bounce ideas off one another, familiarize Bjorn and other maintainers with your work, so that they will be able to hit the ground running.  
 
 Q) How are you ensuring Bjorn gets the latest version of your application?  
-A) It is a good practice to apply version control and introduce continuous integration & continuous delivery pipeline across the system. With continuous delivery, Bjorn the user will be able to use the latest version of the application, get notified of upcoming updates and rollback any changes if necessary.  
+A) It is a good practice to introduce a continuous integration & continuous deployment system across the project. With version control & continuous delivery, Bjorn the user will be able to use the latest version of the application, get notified of upcoming updates and rollback any changes if necessary.  
 The application can also be containerized so Bjorn is able to get the latest versions. Using Docker or similar orchestration, one can setup service discovery and provide runnable images that help with platform independence  
 
 ## installation instructions
 
-1) Make sure git is installed by running `git --version`, if not installed, see the following:  
+1) Make sure git is installed by running `git --version`, if not installed, see below:  
 a) if on Mac,
 ```
 # Check for Homebrew and install it if missing
@@ -69,9 +69,9 @@ if on Linux ubuntu
 apt update
 apt install git
 ```
-Other Linux package managers include pacman, yum, rpm etc
+Other Linux package managers include pacman, yum, rpm etc  
 
-2) Install python and pip through a version manager or a standalone version. It is *recommended* to install a python version manager such as `pyenv-virtualenv` to manage development environments, *see/ skip to step (3)*
+2) Install python and pip through a version manager or a standalone version. It is *recommended* to install a python version manager such as `pyenv-virtualenv` to manage development environments. *(skip to step 3)*  
 
 a) if on Mac, in Terminal
 ```
@@ -94,10 +94,10 @@ GET Windows Terminal https://docs.microsoft.com/en-us/windows/terminal/get-start
 ```
 Follow the instructions on how to install python on Linux ubuntu from step 2(b) previously  
 
-3) To install `pyenv-virtualenv`  
-*Follow the instructions on https://github.com/pyenv/pyenv-virtualenv*
+3) Install `pyenv-virtualenv`  
+Follow the instructions on https://github.com/pyenv/pyenv-virtualenv  
 
-*optional)* installing as submodules
+*(optional)* installing as submodules
 ```
 git init
 git submodule add -f git@github.com:pyenv/pyenv.git .pyenv
@@ -105,13 +105,13 @@ cd .pyenv
 git submodule add -f git@github.com:pyenv/pyenv-virtualenv.git plugins/pyenv-virtualenv
 ```
 
-*4 optional)* to install from web
-visit `https://www.python.org/downloads/` for the installer
+*(optional)* 4) Install from web  
+visit `https://www.python.org/downloads/` for the installer  
 
 5) Download the project and install dependencies  
-a) In terminal, Clone the `image_comparison` GitHub reposity using its https or ssh link (assuming Git & credentials)
+a) In terminal, clone the `image-comparison` GitHub repository using the provided HTTPS or SSH URL  
 b) `cd` to the `image-comparison` directory containing the python source code, csv and image files  
-c) run `pip install`
+c) run `pip install`  
 
 6) Run `python image_comparison.py`  
 a) As noted in the assumptions above, the image files and input csv must exist in the same directory as the python program  
@@ -120,21 +120,21 @@ c) Enter a new filename for the output csv when asked at the python question pro
 d) Exit the program `ctrl-c or ^C`. Open the output csv which should be saved in the same directory as the python program
 
 7) Testing
-Run `python -m pytest image_comparison.py` or see line `133` and the *testing section* for instructions
+Run `python -m pytest image_comparison.py`, see line `133` or [testing](#testing) for more information  
 
 ## notes on design and implementation  
 I have kept the code clean and organized into single responsibility methods, guided by SOLID/DRY principles. 
 I wanted to keep requiring non-standard, third party libraries at a mininum to reduce bloat so the solution is lightweight. There is some defensive programming and error checking such that exceptions are handled gracefully & there are no silent failures.  
-I investigated different implementations for the image comparison, and I found approaches such as `pillow imagechops` difference, `mean squared error` in `numpy` to be useful. In the end, I utilized the `opencv2` & `skimage.measure` library to measure the structural similarity index and return the difference between a pair of images.
+I investigated different implementations for image comparison, and I found approaches such as `pillow imagechops` difference, `mean squared error` in `numpy` to be useful. In the final solution, I used the `opencv2` & `skimage.measure` library to measure a structural similarity index and return the difference between a pair of images.  
 
 ## testing  
-Due to brevity of time, full coverage is due to be completed. Unit tests are for demonstration purposes.   
+Due to brevity of time, full coverage is due to be completed. Unit tests are for demonstration purposes.  
 Lines `142` to `156` includes `pytest` python tests for testing the edge cases of `getCsv` of the `ImageComparison` class  
-Additional test cases to do include:   
+Additional test cases to do include:  
 - unit tests for other components' functionality,  
-- checking for a .csv extension,   
+- checking for a .csv extension,  
 - checking for image type extension,  
-- testing the exception cases in the error checking methods  
+- testing the error checking logic with more edge cases  
 
 ## license
 This work is licensed under GPLv3 - see the [LICENSE](LICENSE) file for details
